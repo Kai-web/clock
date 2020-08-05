@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字时钟UI设计</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #060a1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        #clock h2{
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 10px 0;
+            /*position: relative;*/
+            /*display: block;*/
+        }
+        #clock #time{
+            display: flex;
+        }
+        #clock #time div{
+            /*position: relative;*/
+            margin: 0 5px;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);     /*below向下镜像，距离1px，全透明彩色渐变*/
+        }
+        #clock #time div span{
+            /*position: relative;*/
+            /*display: block;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 130px;
+            background: #2196f3;
+            color: #fff;
+            font-weight: 100;
+            font-size: 4.5em;
+            /*z-index: 100;*/
+            /*border: #1b5e20 solid 1px;*/
+            box-shadow: 0 0 0 3px rgba(0,0,0,.2);       /*设置span的阴影边框，颜色，透明度*/
+        }
+        #clock #time div span:nth-child(2){
+            height: 30px;
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+            box-shadow: none;
+            background: #127fd6;
+            text-transform: uppercase;
+        }
+        #clock #time div:last-child span{
+            background: #ff006a;
+        }
+        #clock #time div:last-child span:nth-child(2){
+            background: #ec0062;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock">
+        <h2>the time is now</h2>
+        <div id="time">
+            <div><span id="hour">00</span><span>Hours</span></div>
+            <div><span id="min">00</span><span>Minutes</span></div>
+            <div><span id="sec">00</span><span>Seconds</span></div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function clock() {
+        let hours = document.getElementById('hour');
+        let minutes = document.getElementById('min');
+        let seconds = document.getElementById('sec');
+
+        let h = new Date().getHours();
+        let m = new Date().getMinutes();
+        let s = new Date().getSeconds();
+
+        // 设置格式
+        if (h < 10){
+            hours.innerHTML = '0' + h;
+        }
+        else{
+            hours.innerHTML = h;
+        }
+        if (m < 10){
+            minutes.innerHTML='0' + m;
+        }
+        else{
+            minutes.innerHTML = m;
+        }
+        if (s < 10){
+            seconds.innerHTML='0' + s;
+        }
+        else {
+            seconds.innerHTML = s;
+        }
+    }
+    setInterval(clock,1000)      /*1s执行clock函数一次*/
+</script>
